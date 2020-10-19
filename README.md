@@ -1,9 +1,18 @@
 <img src="./images/logo.sample.png" alt="Logo of the project" align="right">
 
-# Name of the project &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+# Authorization Server &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 > Additional information or tag line
 
 A brief description of your project, what it is used for.
+This is a pseudo-stateful JWT authorization server based on the proposed
+strategy of [this link][article_link]. Even though the solution is
+comprehensive in the sense that it lets us keep the benefits of a
+stateless JWT and complement it with the security of a stateful
+authentication server, but it's not _well-established_ and therefore
+leads to many different forms of implementation. This project is just an
+example implementation of the corresponding solution.
+
+[article_link]: https://journals.sagepub.com/doi/full/10.1177/1550147718801535
 
 ## Installing / Getting started
 
