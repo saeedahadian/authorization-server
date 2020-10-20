@@ -1,4 +1,11 @@
-import { Controller, Post, HttpCode, Req, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  HttpCode,
+  Req,
+  UseGuards,
+  UseFilters,
+} from '@nestjs/common';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import {
   ApiTags,
@@ -6,14 +13,16 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
+import { AuthenticationExceptionFilter } from '../exceptions/authentication-exception.filter';
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @UseGuards(LocalAuthGuard)
   @Post('login')
+  @UseGuards(LocalAuthGuard)
+  @UseFilters(AuthenticationExceptionFilter)
   @HttpCode(200)
   @ApiOkResponse({
     description: 'User was authenticated successfully.',
