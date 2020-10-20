@@ -7,24 +7,24 @@ import {
 import { Request, Response } from 'express';
 
 @Catch(UnauthorizedException)
-export class AuthenticationExceptionFilter implements ExceptionFilter {
+export class JwtAuthExceptionFilter implements ExceptionFilter {
   catch(exception: UnauthorizedException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const res = ctx.getResponse<Response>();
     const req = ctx.getRequest<Request>();
+    const status = exception.getStatus();
 
-    // Check if the request body is empty.
-    if (!Object.keys(req.body).length) {
+    // Check if "authorization" header is provided in the request.
+    if (req.get('authorization')?.split(' ')[0] !== 'Bearer') {
       return res.status(400).json({
         status: 'failure',
-        description: 'User credentials are not given.',
+        description: 'Bearer token is not given.',
       });
     }
 
-    return res.status(401).json({
+    return res.status(status).json({
       status: 'failure',
-      description: 'User credentials are not valid.',
-      data: req.body,
+      description: 'User is not authorized to access this resource.',
     });
   }
 }
