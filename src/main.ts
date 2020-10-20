@@ -12,6 +12,8 @@ async function bootstrap() {
     .setTitle('Authorization Server')
     .setDescription('A pseudo-stateful JWT authorization server.')
     .setVersion('0.1.0')
+    .addBasicAuth()
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);

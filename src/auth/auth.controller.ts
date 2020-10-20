@@ -9,6 +9,7 @@ import {
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import {
   ApiTags,
+  ApiBasicAuth,
   ApiOkResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
@@ -20,6 +21,7 @@ import { AuthenticationExceptionFilter } from '../exceptions/authentication-exce
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @ApiBasicAuth()
   @Post('login')
   @UseGuards(LocalAuthGuard)
   @UseFilters(AuthenticationExceptionFilter)

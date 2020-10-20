@@ -14,7 +14,6 @@ export class AuthorizationExceptionFilter implements ExceptionFilter {
     const req = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
-    console.log(req.get('authorization'));
     // Check if "authorization" header is provided in the request.
     if (!req.get('authorization')) {
       return res.status(400).json({
