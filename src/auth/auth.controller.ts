@@ -7,6 +7,7 @@ import {
   UseFilters,
 } from '@nestjs/common';
 import { LocalAuthGuard } from './guards/local-auth.guard';
+import { BasicAuthGuard } from './guards/basic-auth.guard';
 import {
   ApiTags,
   ApiBasicAuth,
@@ -14,7 +15,8 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { AuthenticationExceptionFilter } from '../exceptions/authentication-exception.filter';
+import { LocalAuthExceptionFilter } from '../exceptions/local-auth-exception.filter';
+import { BasicAuthExceptionFilter } from '../exceptions/basic-auth-exception.filter';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -23,8 +25,9 @@ export class AuthController {
 
   @ApiBasicAuth()
   @Post('login')
-  @UseGuards(LocalAuthGuard)
-  @UseFilters(AuthenticationExceptionFilter)
+  // @UseGuards(LocalAuthGuard)
+  @UseGuards(BasicAuthGuard)
+  @UseFilters(BasicAuthExceptionFilter)
   @HttpCode(200)
   @ApiOkResponse({
     description: 'User was authenticated successfully.',
