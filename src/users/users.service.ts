@@ -13,6 +13,9 @@ export class UsersService {
   ) {}
 
   async create(user: any): Promise<any> {
+    // Set the role on 'user' by default.
+    user.roles = ['user'];
+
     return this.usersRepository.insert(user);
   }
 

@@ -24,7 +24,7 @@ export class JwtAuthExceptionFilter implements ExceptionFilter {
 
     return res.status(status).json({
       status: 'failure',
-      description: 'User is not authorized to access this resource.',
+      description: 'User is not authenticated.',
     });
   }
 }

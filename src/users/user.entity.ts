@@ -12,7 +12,10 @@ export class User {
   username: string;
 
   @Column({
-    select: false,  // Don't show this column on queries.
+    select: false, // Don't show this column on queries.
   })
   password: string;
+
+  @Column('simple-array')
+  roles: string[];
 }

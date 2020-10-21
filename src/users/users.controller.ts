@@ -18,6 +18,8 @@ import {
 } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { JwtAuthExceptionFilter } from '../common/filters/jwt-auth-exception.filter';
+import { RolesGuard } from '../common/guards/roles.guard';
+import { Roles } from '../common/decorators/roles.decorator';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 
@@ -33,7 +35,6 @@ export class UsersController {
       return {
         status: 'success',
         description: 'A new user was successfully created.',
-        user,
       };
     } catch (err) {
       if (err.code === 'ER_DUP_ENTRY') {
@@ -45,8 +46,13 @@ export class UsersController {
     }
   }
 
+  @ApiBearerAuth()
   @Get()
-  async findAll(): Promise<any> {
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
+  @UseFilters(JwtAuthExceptionFilter)
+  @Roles('admin')
+  async findAll(@Req() req): Promise<any> {
     const users = await this.usersService.findAll();
     return {
       status: 'success',
