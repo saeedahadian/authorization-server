@@ -20,13 +20,22 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  async findOne(id: string): Promise<User | undefined> {
-    const user = await this.usersRepository.findOne(id);
+  async findOne(username: string): Promise<User | undefined> {
+    const user = await this.usersRepository.findOne({ username });
     if (!user) {
       throw new NotFoundException({
         status: 'failure',
-        description: 'No user with given id was found.',
+        description: 'No user with given username was found.',
       });
+    } else {
+      return user;
+    }
+  }
+
+  async checkPassword(username: string, password: string): Promise<User | boolean> {
+    const user = await this.usersRepository.findOne({ username, password });
+    if (!user) {
+      return false;
     } else {
       return user;
     }

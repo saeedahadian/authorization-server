@@ -36,6 +36,11 @@ export class AuthController {
     description: 'User credentials are not valid.',
   })
   async login(@Req() req) {
-    return this.authService.login(req.user);
+    const data = await this.authService.login(req.user);
+    return {
+      status: 'success',
+      description: 'User logged in successfully.',
+      data,
+    };
   }
 }

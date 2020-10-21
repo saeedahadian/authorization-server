@@ -55,14 +55,14 @@ export class UsersController {
     };
   }
 
-  @Get(':id')
+  @Get(':username')
   @ApiParam({
-    name: 'id',
-    description: 'The id of the target user.',
+    name: 'username',
+    description: 'The username of the target user.',
     type: String,
   })
-  async findOne(@Param('id') userId): Promise<any> {
-    const user = await this.usersService.findOne(userId);
+  async findOne(@Param('username') username): Promise<any> {
+    const user = await this.usersService.findOne(username);
     return {
       status: 'success',
       description: 'A single user successfully retrieved.',
