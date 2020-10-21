@@ -15,8 +15,8 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { LocalAuthExceptionFilter } from '../exceptions/local-auth-exception.filter';
-import { BasicAuthExceptionFilter } from '../exceptions/basic-auth-exception.filter';
+import { LocalAuthExceptionFilter } from '../common/filters/local-auth-exception.filter';
+import { BasicAuthExceptionFilter } from '../common/filters/basic-auth-exception.filter';
 
 @ApiTags('auth')
 @Controller('auth')

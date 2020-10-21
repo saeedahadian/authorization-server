@@ -17,7 +17,7 @@ import {
   ApiParam,
 } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { JwtAuthExceptionFilter } from '../exceptions/jwt-auth-exception.filter';
+import { JwtAuthExceptionFilter } from '../common/filters/jwt-auth-exception.filter';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 
